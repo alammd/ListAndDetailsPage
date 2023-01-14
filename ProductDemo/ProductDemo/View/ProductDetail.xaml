@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProductDemo.View.ProductDetail"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:control="clr-namespace:ProductDemo.CustomControl"
+    BackgroundColor="{StaticResource PageBackgroundColor}"
+    NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView>
+        <StackLayout Padding="0,0,10,0" Orientation="Horizontal">
+            <Label
+                FontFamily="FontAwesomeFreeSolid"
+                HorizontalOptions="Start"
+                Text="&#xf053;"
+                TextColor="{StaticResource PrimaryTextColor}"
+                VerticalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoBackCommad}" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                Text="{Binding ProductDetail.Name}"
+                TextColor="{StaticResource PrimaryTextColor}"
+                VerticalOptions="CenterAndExpand" />
+            <Frame
+                Padding="5"
+                BackgroundColor="{StaticResource PrimaryTextColor}"
+                CornerRadius="2"
+                HeightRequest="5"
+                HorizontalOptions="End">
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding RTLText}"
+                    TextColor="#29283a" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RTLCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid FlowDirection="{Binding RTL}" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="20" />
+                </Grid.RowDefinitions>
+
+                <!--  Image  -->
+                <Image Grid.Row="0" Source="{Binding ProductDetail.Image}" />
+
+                <!--  Product Name and Price  -->
+                <Grid
+                    Grid.Row="1"
+                    Padding="10"
+                    ColumnDefinitions="*,*">
+                    <StackLayout
+                        Grid.Column="0"
+                        HorizontalOptions="Start"
+                        Spacing="2">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Large"
+                            Text="{Binding ProductDetail.Name}" />
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Small"
+                            Text="{Binding ProductDetail.SellerAdvice}"
+                            TextColor="{StaticResource SellerAdviceColor}" />
+                    </StackLayout>
+
+                    <Label
+                        Grid.Column="1"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalOptions="EndAndExpand"
+                        Text="{Binding ProductDetail.Price}"
+                        VerticalOptions="CenterAndExpand" />
+                </Grid>
+
+                <!--  Description  -->
+                <Label
+                    Grid.Row="2"
+                    Padding="10"
+                    FontAttributes="Bold"
+                    Text="{Binding ProductDetail.Description}" />
+
+                <!--  Price  -->
+                <StackLayout
+                    Grid.Row="3"
+                    Padding="10"
+                    HorizontalOptions="EndAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="15"
+                    VerticalOptions="StartAndExpand">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Text="{Binding Price}" />
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        Text="-" />
+                    <Frame
+                        Padding="0"
+                        CornerRadius="4"
+                        HasShadow="False"
+                        HeightRequest="40"
+                        TranslationY="-7"
+                        WidthRequest="50">
+                        <control:BorderLessEntry
+                            FontSize="Medium"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Count}"
+                            TextColor="#727272"
+                            TranslationY="5" />
+                    </Frame>
+                </StackLayout>
+
+                <!--  Buy It  Button  -->
+                <Button
+                    Grid.Row="4"
+                    Margin="10"
+                    Command="{Binding BuyItCommand}"
+                    CornerRadius="25"
+                    Text="Buy It"
+                    TextColor="{StaticResource PrimaryTextColor}"
+                    TextTransform="None">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                            <GradientStop Offset="0.1" Color="#95c650" />
+                            <GradientStop Offset="1.0" Color="#496d16" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <!--  Ratings Section  -->
+                <Grid
+                    Grid.Row="5"
+                    Padding="10"
+                    ColumnDefinitions="Auto,Auto">
+                    <Label
+                        Grid.Column="0"
+                        FontSize="40"
+                        Text="{Binding ProductDetail.Rating}"
+                        TextColor="{StaticResource SellerAdviceColor}" />
+
+                    <StackLayout
+                        Grid.Column="1"
+                        Spacing="5"
+                        VerticalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal" Spacing="2">
+                            <Label
+                                FontFamily="FontAwesomeFreeSolid"
+                                Text="&#xf005;"
+                                TextColor="{StaticResource RatingColor}" />
+                            <Label
+                                FontFamily="FontAwesomeFreeSolid"
+                                Text="&#xf005;"
+                                TextColor="{StaticResource RatingColor}" />
+                            <Label
+                                FontFamily="FontAwesomeFreeSolid"
+                                Text="&#xf005;"
+                                TextColor="{StaticResource RatingColor}" />
+                            <Label
+                                FontFamily="FontAwesomeFreeSolid"
+                                Text="&#xf005;"
+                                TextColor="{StaticResource RatingColor}" />
+                            <Label
+                                BackgroundColor="{StaticResource SecondaryColor}"
+                                FontFamily="FontAwesomeFreeSolid"
+                                Text="&#xf005;"
+                                TextColor="{StaticResource RatingColor}" />
+
+                        </StackLayout>
+                        <Label Text="Alamgeer" />
+                    </StackLayout>
+                </Grid>
+                <!--  Listview  -->
+                <StackLayout Grid.Row="6" BindableLayout.ItemsSource="{Binding FeedbackCollection}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame
+                                Margin="5"
+                                Padding="10"
+                                CornerRadius="2">
+                                <Grid Padding="10" RowDefinitions="Auto,Auto">
+                                    <Grid Grid.Row="0" ColumnDefinitions="*,*">
+                                        <StackLayout Grid.Column="0" Spacing="5">
+                                            <Label
+                                                FontAttributes="Bold"
+                                                FontSize="Large"
+                                                HorizontalOptions="Start"
+                                                Text="{Binding Review}" />
+                                            <StackLayout Orientation="Horizontal" Spacing="2">
+                                                <Label
+                                                    FontFamily="FontAwesomeFreeSolid"
+                                                    Text="&#xf005;"
+                                                    TextColor="{StaticResource RatingColor}" />
+                                                <Label
+                                                    FontFamily="FontAwesomeFreeSolid"
+                                                    Text="&#xf005;"
+                                                    TextColor="{StaticResource RatingColor}" />
+                                                <Label
+                                                    FontFamily="FontAwesomeFreeSolid"
+                                                    Text="&#xf005;"
+                                                    TextColor="{StaticResource RatingColor}" />
+                                                <Label
+                                                    FontFamily="FontAwesomeFreeSolid"
+                                                    Text="&#xf005;"
+                                                    TextColor="{StaticResource RatingColor}" />
+                                                <Label
+                                                    BackgroundColor="White"
+                                                    FontFamily="FontAwesomeFreeSolid"
+                                                    Text="&#xf005;"
+                                                    TextColor="{StaticResource RatingColor}" />
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            HorizontalOptions="EndAndExpand"
+                                            Spacing="5">
+                                            <Label FontSize="Large" Text="{Binding Name}" />
+                                            <Label FontSize="Small" Text="{Binding Date}" />
+                                        </StackLayout>
+                                    </Grid>
+                                    <Label
+                                        Grid.Row="1"
+                                        Margin="0,20,0,0"
+                                        FontAttributes="Bold"
+                                        Text="{Binding FullReview}" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

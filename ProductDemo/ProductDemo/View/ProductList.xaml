@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProductDemo.View.ProductList"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Product List"
+    BackgroundColor="{StaticResource PageBackgroundColor}">
+    <NavigationPage.TitleView>
+        <StackLayout Padding="0,0,10,0" Orientation="Horizontal">
+            <Label
+                FontFamily="FontAwesomeFreeSolid"
+                HorizontalOptions="Start"
+                Text="&#xf053;"
+                TextColor="{StaticResource PrimaryTextColor}"
+                VerticalOptions="Center" />
+            <Label
+                FontAttributes="Bold"
+                FontSize="Large"
+                HorizontalOptions="CenterAndExpand"
+                Text="Product List"
+                TextColor="{StaticResource PrimaryTextColor}"
+                VerticalOptions="CenterAndExpand" />
+            <Frame
+                Padding="5"
+                BackgroundColor="{StaticResource PrimaryTextColor}"
+                CornerRadius="2"
+                HeightRequest="5"
+                HorizontalOptions="End">
+                <Label
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding RTLText}"
+                    TextColor="{StaticResource SecondaryTextColor}" />
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding RTLCommand}" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView
+                ItemsSource="{Binding ProductCollection}"
+                RotationY="{Binding RotationY}"
+                SelectedItem="{Binding SelectedProduct}"
+                SelectionChangedCommand="{Binding SelectedProductCommand}"
+                SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.Header>
+                    <StackLayout
+                        Padding="10"
+                        BackgroundColor="{StaticResource DiscountBannerColor}"
+                        HorizontalOptions="StartAndExpand">
+                        <Label
+                            FontSize="Large"
+                            HorizontalOptions="CenterAndExpand"
+                            RotationY="{Binding RotationY}"
+                            Style="{StaticResource PrimaryTextStyle}"
+                            Text="25% discount"
+                            VerticalOptions="CenterAndExpand" />
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            RotationY="{Binding RotationY}"
+                            Style="{StaticResource PrimaryTextStyle}"
+                            Text="Enjoy it now!"
+                            VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10" Spacing="0">
+                            <Image
+                                Aspect="AspectFill"
+                                RotationY="{Binding RotationY}"
+                                Source="{Binding Image}" />
+                            <Label
+                                Padding="0,15,0,0"
+                                RotationY="{Binding RotationY}"
+                                Style="{StaticResource SecondaryTextStyle}"
+                                Text="{Binding Brand}" />
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                RotationY="{Binding RotationY}"
+                                Text="{Binding Title}"
+                                TextColor="#9b9b9b" />
+                            <Label
+                                FontSize="Medium"
+                                RotationY="{Binding RotationY}"
+                                Text="{Binding Price}" />
+
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal" />
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{StaticResource PrimaryTextColor}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

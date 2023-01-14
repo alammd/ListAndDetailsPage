@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application
+    x:Class="ProductDemo.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!--  Primary Color  -->
+            <Color x:Key="PrimaryColor">#7a643f</Color>
+            <Color x:Key="PrimaryTextColor">White</Color>
+
+            <!--  Secondary Color  -->
+            <Color x:Key="SecondaryColor">White</Color>
+            <Color x:Key="SecondaryTextColor">#7a643f</Color>
+
+            <!--  DiscountBanner Color  -->
+            <Color x:Key="DiscountBannerColor">#ad1457</Color>
+
+            <!--  General Color  -->
+            <Color x:Key="SellerAdviceColor">#88b445</Color>
+            <Color x:Key="RatingColor">#f1b81d</Color>
+            <Color x:Key="PageBackgroundColor">#f5f6f8</Color>
+
+            <!--  Styles  -->
+            <Style x:Key="PrimaryTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryTextColor}" />
+            </Style>
+
+            <Style x:Key="SecondaryTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource SecondaryTextColor}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="#727272" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
